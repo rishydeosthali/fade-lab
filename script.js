@@ -2,21 +2,23 @@ const header = document.querySelector(".site-header");
 const reveals = document.querySelectorAll(".reveal");
 const transparentLogos = document.querySelectorAll(".transparent-logo");
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.18,
-  }
-);
+if (reveals.length > 0) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.18,
+    }
+  );
 
-reveals.forEach((element) => revealObserver.observe(element));
+  reveals.forEach((element) => revealObserver.observe(element));
+}
 
 const cutOutDarkBackground = (image) => {
   const source = image.getAttribute("src");
@@ -66,8 +68,55 @@ const cutOutDarkBackground = (image) => {
 transparentLogos.forEach(cutOutDarkBackground);
 
 const updateHeaderState = () => {
+  if (!header) {
+    return;
+  }
+
   header.classList.toggle("is-scrolled", window.scrollY > 12);
 };
 
 updateHeaderState();
 window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+const isBooksyModalOpen = () =>
+  Boolean(document.querySelector(".booksy-widget-overlay, .booksy-widget-dialog"));
+
+const getBooksyLauncher = () => document.querySelector(".booksy-widget-button");
+
+const openBooksyWidget = () => {
+  if (isBooksyModalOpen()) {
+    return true;
+  }
+
+  const launcher = getBooksyLauncher();
+  if (!launcher) {
+    return false;
+  }
+
+  launcher.click();
+  return true;
+};
+
+document.addEventListener(
+  "click",
+  (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) {
+      return;
+    }
+
+    const opener = target.closest(".booksy-open");
+    if (!opener) {
+      return;
+    }
+
+    const opened = openBooksyWidget();
+    if (!opened) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+  },
+  true
+);

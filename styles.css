@@ -25,10 +25,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -140,8 +136,7 @@ main {
 }
 
 .nav-cta,
-.button,
-.floating-book {
+.button {
   font-family: var(--font-display);
   display: inline-flex;
   align-items: center;
@@ -153,8 +148,7 @@ main {
 }
 
 .nav-cta,
-.button-primary,
-.floating-book {
+.button-primary {
   background: var(--accent);
   color: #091006;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -186,18 +180,6 @@ main {
 .button-secondary:hover {
   border-color: var(--border-hover);
   background: rgba(255, 255, 255, 0.04);
-}
-
-.floating-book {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 110;
-  min-width: 140px;
-  padding: 0.9rem 1.25rem;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  box-shadow: none;
 }
 
 /* ——— Hero ——— */
@@ -1033,6 +1015,23 @@ a.about-visit-value:hover {
   font-size: 0.875rem;
 }
 
+/* Booksy launcher (kept in DOM for .booksy-open triggers; not shown as second CTA) */
+.booksy-widget-button {
+  position: fixed !important;
+  left: -9999px !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) repeat(2, minmax(0, 1fr));
@@ -1206,14 +1205,12 @@ a.about-visit-value:hover {
 }
 
 .button:hover,
-.nav-cta:hover,
-.floating-book:hover {
+.nav-cta:hover {
   transform: translateY(-1px);
 }
 
 .button-primary:hover,
-.nav-cta:hover,
-.floating-book:hover {
+.nav-cta:hover {
   background: linear-gradient(135deg, #e4ffb7, var(--accent-strong));
 }
 
@@ -1344,17 +1341,9 @@ a.about-visit-value:hover {
     min-height: 240px;
   }
 
-  .floating-book {
-    left: 1rem;
-    right: 1rem;
-    min-width: 0;
-  }
-
   .site-footer {
     flex-direction: column;
-    padding-bottom: 5rem;
   }
-
 }
 
 @media (max-width: 960px) {
