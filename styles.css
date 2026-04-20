@@ -862,6 +862,17 @@ a.about-visit-value:hover {
   object-fit: cover;
 }
 
+/* 02 · Haircut and beard — vertical crop only (no transform) */
+.services-grid .service-card:nth-child(1) .service-card-media img {
+  object-position: center 2%;
+}
+.services-grid .service-card:nth-child(2) .service-card-media img {
+  object-position: center 40%;
+}
+.services-grid .service-card:nth-child(3) .service-card-media img {
+  object-position: center 25%;
+}
+
 .service-index {
   font-family: var(--font-display);
   font-size: 2.4rem;
