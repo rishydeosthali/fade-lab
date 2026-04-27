@@ -355,6 +355,51 @@ p {
   background: var(--surface-3);
 }
 
+.strip-card--hours {
+  padding: 0.85rem 1rem 0.9rem;
+}
+
+/* Inline hours grid (About plan-your-visit panel) */
+.hours-table {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  row-gap: 0.2rem;
+  margin-top: 0.1rem;
+}
+
+.ht-day {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted-strong);
+  line-height: 1.5;
+}
+
+.ht-time {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.strip-card--hours .hours-table-block {
+  margin: 0.4rem 0 0;
+}
+
+.strip-card--hours .hours-table-block td {
+  padding: 0.1rem 0;
+  font-size: 0.8rem;
+}
+
+.strip-card--hours .hours-table-block td:first-child {
+  padding-right: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-strong);
+}
+
+.strip-card--hours .hours-table-block td:last-child {
+  color: var(--muted);
+}
+
 .strip-label {
   display: block;
   font-size: 0.6875rem;
